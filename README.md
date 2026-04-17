@@ -36,46 +36,46 @@ El sistema distingue dos tipos de usuarios:
 ##  Estructura del Proyecto
 
 ```
-lamaison-auth/
-├── pom.xml
-└── src/main/java/com/lamaison/auth/
-    ├── LamaisonAuthApplication.java
-    ├── model/
-    │   ├── User.java
-    │   ├── Role.java (enum: CLIENTE, ADMINISTRADOR)
-    │   ├── Producto.java
-    │   ├── Pedido.java
-    │   └── PasswordResetToken.java
-    ├── repository/
-    │   ├── UserRepository.java
-    │   ├── ProductoRepository.java
-    │   ├── PedidoRepository.java
-    │   └── PasswordResetTokenRepository.java
-    ├── service/
-    │   ├── AuthService.java (interfaz)
-    │   ├── UserService.java (interfaz)
-    │   └── impl/
-    │       ├── AuthServiceImpl.java
-    │       └── UserServiceImpl.java
-    ├── controller/
-    │   ├── AuthController.java
-    │   ├── AdminController.java
-    │   ├── ProductoController.java
-    │   └── PedidoController.java
-    ├── config/
-    │   ├── SecurityConfig.java
-    │   ├── JwtUtil.java
-    │   └── JwtAuthFilter.java
-    ├── dto/
-    │   ├── request/
-    │   │   ├── RegisterRequest.java
-    │   │   ├── LoginRequest.java
-    │   │   └── PasswordResetRequest.java
-    │   └── response/
-    │       ├── AuthResponse.java
-    │       └── UserResponse.java
-    └── exception/
-        └── GlobalExceptionHandler.java
+com.lamaison.auth
+│
+├── domain
+│   └── model
+│       ├── User.java
+│       ├── Producto.java
+│       ├── Categoria.java
+│       ├── Pedido.java
+│       ├── PasswordResetToken.java
+│       └── Role.java
+│
+├── application
+│   └── service
+│       ├── AuthServiceImpl.java
+│       ├── CategoriaServiceImpl.java
+│       └── UserServiceImpl.java
+│
+├── infrastructure
+│   ├── controller
+│   │   ├── AuthController.java
+│   │   ├── ProductoController.java
+│   │   ├── PedidoController.java
+│   │   ├── CategoriaController.java
+│   │   └── AdminController.java
+│   │
+│   ├── repository
+│   │   ├── UserRepository.java
+│   │   ├── ProductoRepository.java
+│   │   ├── CategoriaRepository.java
+│   │   ├── PedidoRepository.java
+│   │   └── PasswordResetTokenRepository.java
+│   │
+│   └── config
+│       ├── SecurityConfig.java
+│       ├── JwtUtil.java
+│       └── JwtAuthFilter.java
+│
+└── dto
+    ├── request
+    └── response
 ```
 
 ---
