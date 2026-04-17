@@ -12,7 +12,7 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private String imagen;
-    private String categoria;
+    private Categoria categoria;
 
     public Producto() {}
 
