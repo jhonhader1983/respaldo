@@ -1,4 +1,4 @@
-package com.lamaison.auth.config;
+package com.lamaison.auth.infrastructure.controller.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.lamaison.auth.model;
+package com.lamaison.auth.domain.model;
 
 public enum Role {
     CLIENTE,

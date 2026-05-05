@@ -1,12 +1,22 @@
-package com.lamaison.auth.controller;
+package com.lamaison.auth.infrastructure.controller;
 
-import com.lamaison.auth.model.Pedido;
-import com.lamaison.auth.repository.PedidoRepository;
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lamaison.auth.infrastructure.controller.repository.PedidoRepository;
+import com.lamaison.auth.domain.model.Pedido;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/pedidos")

@@ -1,4 +1,4 @@
-package com.lamaison.auth.service;
+package com.lamaison.auth.application.service;
 
 import com.lamaison.auth.dto.request.LoginRequest;
 import com.lamaison.auth.dto.request.PasswordResetRequest;

@@ -1,7 +1,7 @@
-package com.lamaison.auth.repository;
+package com.lamaison.auth.infrastructure.controller.repository;
 
-import com.lamaison.auth.model.Role;
-import com.lamaison.auth.model.User;
+import com.lamaison.auth.domain.model.Role;
+import com.lamaison.auth.domain.model.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

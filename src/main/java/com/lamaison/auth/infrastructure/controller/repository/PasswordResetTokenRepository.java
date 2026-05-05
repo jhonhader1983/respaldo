@@ -1,6 +1,6 @@
-package com.lamaison.auth.repository;
+package com.lamaison.auth.infrastructure.controller.repository;
 
-import com.lamaison.auth.model.PasswordResetToken;
+import com.lamaison.auth.domain.model.PasswordResetToken;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 

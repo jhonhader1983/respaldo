@@ -1,6 +1,6 @@
 package com.lamaison.auth.dto.response;
 
-import com.lamaison.auth.model.Role;
+import com.lamaison.auth.domain.model.Role;
 
 public class AuthResponse {
 

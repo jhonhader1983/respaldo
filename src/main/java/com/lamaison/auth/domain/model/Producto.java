@@ -1,4 +1,4 @@
-package com.lamaison.auth.model;
+package com.lamaison.auth.domain.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +12,7 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private String imagen;
-    private Categoria categoria;
+    private String categoria;
 
     public Producto() {}
 

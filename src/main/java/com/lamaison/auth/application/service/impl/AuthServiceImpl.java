@@ -1,21 +1,24 @@
-package com.lamaison.auth.service.impl;
+package com.lamaison.auth.application.service.impl;
 
-import com.lamaison.auth.config.JwtUtil;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import com.lamaison.auth.domain.model.Role;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.lamaison.auth.application.service.AuthService;
+import com.lamaison.auth.domain.model.PasswordResetToken;
+import com.lamaison.auth.domain.model.User;
 import com.lamaison.auth.dto.request.LoginRequest;
 import com.lamaison.auth.dto.request.PasswordResetRequest;
 import com.lamaison.auth.dto.request.RegisterRequest;
 import com.lamaison.auth.dto.response.AuthResponse;
-import com.lamaison.auth.model.PasswordResetToken;
-import com.lamaison.auth.model.Role;
-import com.lamaison.auth.model.User;
-import com.lamaison.auth.repository.PasswordResetTokenRepository;
-import com.lamaison.auth.repository.UserRepository;
-import com.lamaison.auth.service.AuthService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import com.lamaison.auth.infrastructure.controller.config.JwtUtil;
+import com.lamaison.auth.infrastructure.controller.repository.PasswordResetTokenRepository;
+import com.lamaison.auth.infrastructure.controller.repository.UserRepository;
+
 import reactor.core.publisher.Mono;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class AuthServiceImpl implements AuthService {

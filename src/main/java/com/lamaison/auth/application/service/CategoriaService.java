@@ -1,6 +1,6 @@
-package com.lamaison.auth.service;
+package com.lamaison.auth.application.service;
 
-import com.lamaison.auth.model.Categoria;
+import com.lamaison.auth.domain.model.Categoria;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

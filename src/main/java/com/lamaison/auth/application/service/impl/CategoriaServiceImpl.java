@@ -1,10 +1,10 @@
-package com.lamaison.auth.service.impl;
+package com.lamaison.auth.application.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.lamaison.auth.model.Categoria;
-import com.lamaison.auth.repository.CategoriaRepository;
-import com.lamaison.auth.service.CategoriaService;
+import com.lamaison.auth.application.service.CategoriaService;
+import com.lamaison.auth.domain.model.Categoria;
+import com.lamaison.auth.infrastructure.controller.repository.CategoriaRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

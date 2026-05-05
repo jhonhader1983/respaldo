@@ -1,4 +1,4 @@
-package com.lamaison.auth.model;
+package com.lamaison.auth.domain.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

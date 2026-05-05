@@ -1,9 +1,9 @@
-package com.lamaison.auth.service.impl;
+package com.lamaison.auth.application.service.impl;
 
 import com.lamaison.auth.dto.response.UserResponse;
-import com.lamaison.auth.model.Role;
-import com.lamaison.auth.repository.UserRepository;
-import com.lamaison.auth.service.UserService;
+import com.lamaison.auth.domain.model.Role;
+import com.lamaison.auth.infrastructure.controller.repository.UserRepository;
+import com.lamaison.auth.application.service.UserService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.deleteById(id);
     }
 
-    private UserResponse toResponse(com.lamaison.auth.model.User user) {
+    private UserResponse toResponse(com.lamaison.auth.domain.model.User user) {
         return new UserResponse(
                 user.getId(),
                 user.getNombre(),

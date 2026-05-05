@@ -1,4 +1,4 @@
-package com.lamaison.auth.config;
+package com.lamaison.auth.infrastructure.controller.config;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

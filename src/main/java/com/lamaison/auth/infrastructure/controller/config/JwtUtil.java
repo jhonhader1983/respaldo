@@ -1,4 +1,4 @@
-package com.lamaison.auth.config;
+package com.lamaison.auth.infrastructure.controller.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

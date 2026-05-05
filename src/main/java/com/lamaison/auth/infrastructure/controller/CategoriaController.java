@@ -1,4 +1,4 @@
-package com.lamaison.auth.controller;
+package com.lamaison.auth.infrastructure.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lamaison.auth.model.Categoria;
-import com.lamaison.auth.service.CategoriaService;
+import com.lamaison.auth.application.service.CategoriaService;
+import com.lamaison.auth.domain.model.Categoria;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
