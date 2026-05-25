@@ -1,6 +1,9 @@
 package com.lamaison.auth.infrastructure.controller.config;
 
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -10,6 +13,7 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
@@ -34,7 +38,12 @@ public class JwtAuthFilter implements WebFilter {
         String token = authHeader.substring(7);
 
         if (!jwtUtil.isValid(token)) {
-            return chain.filter(exchange);
+            // Token presente pero inválido o expirado → respuesta 401 con JSON claro
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
+            byte[] body = "{\"error\":\"Token inválido o expirado\"}".getBytes(StandardCharsets.UTF_8);
+            DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(body);
+            return exchange.getResponse().writeWith(Mono.just(buffer));
         }
 
         String correo = jwtUtil.getCorreo(token);

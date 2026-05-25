@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lamaison.auth.infrastructure.controller.repository.PedidoRepository;
+import com.lamaison.auth.infrastructure.queue.EventProducer;
+import com.lamaison.auth.infrastructure.queue.QueueEvent;
 import com.lamaison.auth.domain.model.Pedido;
 
 import reactor.core.publisher.Flux;
@@ -23,9 +25,11 @@ import reactor.core.publisher.Mono;
 public class PedidoController {
 
     private final PedidoRepository pedidoRepository;
+    private final EventProducer eventProducer;
 
-    public PedidoController(PedidoRepository pedidoRepository) {
+    public PedidoController(PedidoRepository pedidoRepository, EventProducer eventProducer) {
         this.pedidoRepository = pedidoRepository;
+        this.eventProducer = eventProducer;
     }
 
     @GetMapping
@@ -38,7 +42,13 @@ public class PedidoController {
     public Mono<Pedido> create(@RequestBody Pedido pedido) {
         pedido.setEstado("pendiente");
         pedido.setCreatedAt(LocalDateTime.now());
-        return pedidoRepository.save(pedido);
+        return pedidoRepository.save(pedido)
+                .flatMap(saved -> {
+                    String payload = "Pedido #" + saved.getId() + " | Total: $" + saved.getTotal()
+                            + " | Usuario: " + (saved.getUsuario() != null ? saved.getUsuario().getEmail() : "desconocido");
+                    QueueEvent event = new QueueEvent("PEDIDO_CREADO", payload, LocalDateTime.now());
+                    return eventProducer.publish(event).thenReturn(saved);
+                });
     }
 
     @PutMapping("/{id}")
@@ -46,7 +56,15 @@ public class PedidoController {
         return pedidoRepository.findById(id)
                 .flatMap(existing -> {
                     existing.setEstado(pedido.getEstado());
-                    return pedidoRepository.save(existing);
+                    return pedidoRepository.save(existing)
+                            .flatMap(saved -> {
+                                QueueEvent event = new QueueEvent(
+                                        "PEDIDO_ACTUALIZADO",
+                                        "Pedido #" + saved.getId() + " → estado: " + saved.getEstado(),
+                                        LocalDateTime.now()
+                                );
+                                return eventProducer.publish(event).thenReturn(saved);
+                            });
                 });
     }
 }

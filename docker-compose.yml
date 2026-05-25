@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+
+  redis:
+    image: redis:7-alpine
+    container_name: lamaison-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # MongoDB opcional (el proyecto ya usa MongoDB Atlas en la nube).
+  # Descomenta este bloque SOLO si quieres ejecutar MongoDB localmente
+  # y cambia spring.data.mongodb.uri en application.properties.
+  #
+  # mongodb:
+  #   image: mongo:6
+  #   container_name: lamaison-mongo
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     MONGO_INITDB_DATABASE: lamaison_db
+  #   restart: unless-stopped
